@@ -2,7 +2,11 @@
 
 var sys = require('sys');
 var exec = require('child_process').exec;
-function puts(error, stdout, stderr) { sys.puts(stdout) }
+
+var puts = function(error, stdout, stderr) {
+    sys.puts(stdout);
+    sys.puts(stderr);
+};
 
 var execute = function(command, callback) {
     if (callback == null) {
