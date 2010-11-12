@@ -62,6 +62,8 @@ Proposed Technology Stack
 * ExpressJS - Sinatra-like framework - http://expressjs.com
 * Redis - Key-Value Storage - http://code.google.com/p/redis/
 
+To know more about the technology stack, read the requirements.txt file.
+
 Status
 ======
 
