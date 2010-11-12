@@ -3,7 +3,7 @@ run:
 
 test:
 	@echo "running tests..."
-	@cd src/test && expresso
+	@cd src && expresso
 
 setup:
 	@echo "Installing Requirements to Hive"
