@@ -1,8 +1,5 @@
-Requirements
-============
-
-node
 express
 jake
 redis
-jasmine
+jade
+expresso
