@@ -4,3 +4,4 @@ Requirements
 Node-JS
 Express
 Jake
+redis
