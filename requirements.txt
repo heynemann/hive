@@ -3,3 +3,4 @@ expresso
 jade
 less
 redis
+hamljs
