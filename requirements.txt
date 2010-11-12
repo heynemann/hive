@@ -4,5 +4,7 @@ Requirements
 node
 express
 jake
+jade
+less
 redis
 jasmine
