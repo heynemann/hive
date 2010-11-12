@@ -5,3 +5,4 @@ Node-JS
 Express
 Jake
 redis
+node-jasmine
