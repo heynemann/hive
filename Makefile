@@ -1,3 +1,6 @@
+run:
+	@cd src/ && node app.js
+
 test:
 	@echo "running tests..."
 	@cd src/test && expresso
