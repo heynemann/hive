@@ -1,8 +1,8 @@
 Requirements
 ============
 
-Node-JS
-Express
-Jake
+node
+express
+jake
 redis
 jasmine
