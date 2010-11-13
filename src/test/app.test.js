@@ -19,5 +19,17 @@ module.exports = {
         }, function(res){
             assert.includes(res.body, '<title>Express</title>');
         });
+    },
+    'GET proxied API': function(assert) {
+        assert.response(app, {
+            url: '/google/monty+python'
+        },{
+            status: 200
+
+        }, function(res) {
+            assert.includes(res.body, 'monty python');
+
+        });
     }
 };
+
