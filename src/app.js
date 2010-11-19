@@ -1,30 +1,44 @@
 require.paths.push(__dirname);
+
 var http = require('http');
 var app = module.exports = require('settings').app;
+
+var rapid = require('rapid');
+
+var models = require('models')
+var proxy = require('proxy');
 
 // Routes
 
 app.get('/', function(req, res){
-    res.render('index', {
+    models.RegisteredApi.all(function(err, apis) {
+        res.render('index', {
+            locals: {
+                title: 'Express',
+                apis: apis
+            }
+        });
+    });
+});
+
+app.get('/apis/new', function(req, res) {
+    res.render('newapi', {
         locals: {
-            title: 'Express'
+            title: 'New API'
         }
     });
 });
 
-var getUrl = function(res, host, port, url) {
-    var request = http.createClient(port, host).request('GET', url, {});
-    request.addListener('response', function (response) {
-        res.writeHead(response.statusCode, response.headers);
-        response.addListener('data', function (chunk) {
-            res.write(chunk);
-        });
-        response.addListener('end', function () {
-            res.end();
-        });
+app.post('/apis/create', function(req, res) {
+    var api = new models.RegisteredApi({
+        name: req.body.name_field,
+        url: req.body.source_url_field
     });
-    request.end();
-};
+    
+    api.save(function(err) {
+        res.redirect('/');
+    });
+});
 
 app.get(/^\/hive\/ping\/?(.*)$/, function(req, res) {
     var msg = 'pong';
@@ -43,7 +57,7 @@ app.get(/^\/([^\/]+)\/([^\/]+)\/?(.*)$/, function(req, res){
         var host = 'localhost';
         var url = '/hive/ping/' + rest;
         var port = 3000;
-        getUrl(res, host, port, url);
+        proxy.get(res, host, port, url);
         return;
     }
 

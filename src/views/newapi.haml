@@ -1,0 +1,11 @@
+%form#create_api_form{ action: '/apis/create', method: 'POST' }
+  #name
+    %label{ for: 'name_field' } Name:
+    %input{ type: 'text', id: 'name_field', name: 'name_field' }
+
+  #source_url
+    %label{ for: 'source_url_field' } Source Url:
+    %input{ type: 'text', id: 'source_url_field', name: 'source_url_field' }
+
+  #create
+    %input{ type: 'submit' }
