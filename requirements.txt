@@ -1,6 +1,6 @@
 express
 expresso
-less
 redis
 connect-redis
+less
 hamljs

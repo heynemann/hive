@@ -5,7 +5,7 @@ var app = module.exports = require('settings').app;
 // Routes
 
 app.get('/', function(req, res){
-    res.render('index.haml', {
+    res.render('index', {
         locals: {
             title: 'Express'
         }
