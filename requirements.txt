@@ -1,6 +1,5 @@
 express
 expresso
-jade
 less
 redis
 connect-redis
