@@ -9,7 +9,7 @@ var redisStore = require('connect-redis');
 // Configuration
 
 app.configure(function(){
-    app.set('view engine', 'hamljs');
+    app.set('view engine', 'haml');
     app.set('views', __dirname + '/views');
     app.use(express.bodyDecoder());
     app.use(express.methodOverride());

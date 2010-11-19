@@ -3,4 +3,4 @@ expresso
 redis
 connect-redis
 less
-hamljs
+haml
