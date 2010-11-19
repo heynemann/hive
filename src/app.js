@@ -36,29 +36,42 @@ app.get('/', function(req, res){
     });
 });
 
-app.get(/^\/([^\/]+)\/([^\/]+)\/(.+)$/, function(req, res){
+function getUrl(res, host, port, url) {
+    var request = http.createClient(port, host).request("GET", url, {});
+    request.addListener("response", function (response) {
+        res.writeHead(response.statusCode, response.headers);
+        response.addListener("data", function (chunk) {
+            res.write(chunk);
+        });
+        response.addListener("end", function () {
+            res.end();
+        });
+    });
+    request.end();
+}
+
+app.get(/^\/hive\/ping\/?(.*)$/, function(req, res) {
+    var msg = 'pong';
+    if (req.params[0]) {
+        msg += '\n' + req.params[0];
+    }
+    res.send(msg);
+});
+
+app.get(/^\/([^/]+)\/([^/]+)\/?(.*)$/, function(req, res){
     var user = req.params[0];
     var api = req.params[1];
     var rest = req.params[2];
 
-    if (user == 'google') {
-        var url = 'http://www.google.com/#hl=en-US&source=hp&biw=1920&bih=943&q=' + rest + '&aq=f&aqi=&aql=&oq=&gs_rfai=&fp=6da77184950732af';
-        console.log(url);
-        var google = http.createClient(80, 'www.google.com');
-        var request = google.request('GET', '/',
-          {'host': url});
-        request.end();
-        request.on('response', function (response) {
-            response.setEncoding('utf8');
-            var body = '';
-            response.on('data', function (chunk) {
-                body += chunk;
-            });
-            response.on('end', function() {
-                res.send(body);
-            });
-        });
+    if (user == 'hive' && api == 'apiping') {
+        var host = "localhost"
+        var url = "/hive/ping/" + rest;
+        var port = 3000;
+        getUrl(res, host, port, url);
+        return;
     }
+
+    res.send('API NOT FOUND!');
 });
 
 // Only listen on $ node app.js
