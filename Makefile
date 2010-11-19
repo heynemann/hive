@@ -1,5 +1,5 @@
 run:
-	@cd src/ && node app.js
+	@cd src/ && node dev_server.js
 
 test:
 	@echo "running tests..."
