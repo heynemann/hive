@@ -4,3 +4,4 @@ redis
 connect-redis
 less
 haml
+rapid
