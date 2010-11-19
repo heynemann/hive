@@ -3,4 +3,5 @@ expresso
 jade
 less
 redis
+connect-redis
 hamljs
