@@ -8,7 +8,7 @@ var app = module.exports.app = express.createServer();
 // Configuration
 
 app.configure(function(){
-    app.set('view engine', 'haml');
+    app.set('view engine', 'hamljs');
     app.set('views', __dirname + '/views');
     app.use(express.bodyDecoder());
     app.use(express.methodOverride());
